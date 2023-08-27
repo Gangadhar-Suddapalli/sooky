@@ -1,0 +1,116 @@
+1.function checkNumber() {
+  const user_input = prompt("Enter a positive integer:");
+  const num_user = parseInt(user_input);
+
+  if (isNaN(num_user) || num_user <= 0) {
+    return "Invalid input. Please enter a positive integer.";
+  }
+
+  let sum = 0;
+  for (let i = 1; i <= num_user / 2; i++) {
+    if (num_user % i === 0) {
+      sum += i;
+    }
+  }
+
+  if (sum === num_user) {
+    return "Perfect";
+  } else if (sum > num_user) {
+    return "Abundant";
+  } else {
+    return "Deficient";
+  }
+}
+
+// Call the function to classify the user's input
+const validate = checkNumber();
+alert(validate);
+
+2.// Function to shorten a string
+function shortenString(input) {
+  let result = '';
+  let count = 1;
+
+  for (let i = 0; i < input.length; i++) {
+    if (input[i] === input[i + 1]) {
+      count++;
+    } else {
+      if (count > 1) {
+        result += count;
+      }
+      result += input[i];
+      count = 1;
+    }
+  }
+
+  return result;
+}
+
+// Function to decode a shortened string
+function decodeString(input) {
+  let result = '';
+  let count = '';
+
+  for (let i = 0; i < input.length; i++) {
+    if (!isNaN(input[i])) {
+      count += input[i];
+    } else {
+      if (count === '') {
+        count = 1;
+      }
+      result += input[i].repeat(Number(count));
+      count = '';
+    }
+  }
+
+  return result;
+}
+
+// Ask the user for input
+const inputString = prompt("Enter a string to encode or decode:");
+
+if (inputString) {
+  const choice = prompt("Enter 'encode' to shorten or 'decode' to expand:");
+
+  if (choice === 'encode') {
+    const shortenedString = shortenString(inputString);
+    console.log(`Shortened String: ${shortenedString}`);
+  } else if (choice === 'decode') {
+    const decodedString = decodeString(inputString);
+    console.log(`Decoded String: ${decodedString}`);
+  } else {
+    console.log("Invalid choice. Please enter 'encode' or 'decode'.");
+  }
+} else {
+  console.log("Invalid input. Please enter a string.");
+}
+
+Hard
+1.
+function hitFish(k, l, m, n, total) {
+  let hits = 0;
+
+  for (let fish = 1; fish <= total; fish++) {
+    if (fish % k === 0 || fish % l === 0 || fish % m === 0 || fish % n === 0) {
+      hits++;
+    }
+  }
+
+  return hits;
+}
+
+// Get input from the user
+const k = parseInt(prompt("Enter the value of K:"));
+const l = parseInt(prompt("Enter the value of L:"));
+const m = parseInt(prompt("Enter the value of M:"));
+const n = parseInt(prompt("Enter the value of N:"));
+const total = parseInt(prompt("Enter the total number of fish:"));
+
+if (!isNaN(k) && !isNaN(l) && !isNaN(m) && !isNaN(n) && !isNaN(total)) {
+  const result = hitFish(k, l, m, n, total);
+  console.log(`Efficiency: ${result}`);
+} else {
+  console.log("Invalid input. Please enter valid numbers.");
+}
+
+
